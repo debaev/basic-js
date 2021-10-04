@@ -17,7 +17,13 @@ const HALF_LIFE_PERIOD = 5730;
  * dateSample('WOOT!') => false
  *
  */
-export default function dateSample(/* sampleActivity */) {
-  throw new NotImplementedError('Not implemented');
+export default function dateSample(sampleActivity) {
+  let carbon = sampleActivity
+
+  if (typeof sampleActivity !== 'string' || isNaN(carbon) || carbon > MODERN_ACTIVITY || carbon <= 0) 
+    return false;
+
+  let result = Math.log(MODERN_ACTIVITY / carbon) / (0.693 / HALF_LIFE_PERIOD);
+  return Math.ceil(result)
   // remove line with error and write your code here
 }
